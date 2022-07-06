@@ -8,7 +8,7 @@ import Modal from "react-bootstrap/Modal";
 import FormFloating from "react-bootstrap/FormFloating";
 import InputGroup from "react-bootstrap/InputGroup";
 
-
+const API_URL = "https://calendar-api.mfuhr.com.ar/api"
 
 export const App = () => {
     const [modalTitle, setModalTitle] = useState('Agregar Evento')
@@ -264,7 +264,7 @@ export const App = () => {
 
 
 const getEvents = async () => {
-    const url = '/api/events'
+    const url = API_URL + '/events'
     const options = {
         port: 8080,
         method: 'GET',
@@ -289,9 +289,9 @@ const saveEvent = async (value) => {
 
     console.log(value)
     if ( !value.id || value.id === '' ) {
-        await fetch('/api/saveEvent',options)
+        await fetch(API_URL + '/saveEvent', options)
     } else {
-        await fetch('/api/updateEvent',options)
+        await fetch(API_URL + '/updateEvent', options)
     }
 }
 
@@ -303,5 +303,5 @@ const deleteEvent = async (id) => {
         body: '{"id":"'+id+'"}'
     };
 
-    await fetch('/api/deleteEvent', options)
+    await fetch(API_URL + '/deleteEvent', options)
 }
