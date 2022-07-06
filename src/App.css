@@ -13,19 +13,43 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.cal {
+  width: 95%;
+  margin: auto;
+}
+
+.inputColor{
+  flex: none !important;
+  width: 60px !important;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.convertBtn, .close-btn {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 100% !important;
+  position: fixed !important;
+  right: 20px !important;
+  bottom: 20px !important;
+  background-color: #2c3d4f !important;
+  cursor: pointer;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+
+.convert-btn-icon, .close-btn-icon {
+  color: white !important;
+  margin-top: 2px;
+}
+
+a {
+  color: #000 !important;
+  text-decoration: none !important;
 }
 
 @keyframes App-logo-spin {
