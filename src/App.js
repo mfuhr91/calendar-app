@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Modal from "react-bootstrap/Modal";
 import FormFloating from "react-bootstrap/FormFloating";
 import InputGroup from "react-bootstrap/InputGroup";
+import Alert from "react-bootstrap/Alert";
 
 const API_URL = "https://calendar-api.mfuhr.com.ar/api"
 
@@ -178,6 +179,10 @@ export const App = () => {
                     eventClick={handleEventClick}
                 />
             </div>
+            <Alert variant={'info'}>
+                <i className={"fa-solid fa-circle-info me-1"}></i>
+                Puede tocar un evento para editarlo o eliminarlo
+            </Alert>
             <div>
 
                 <Button variant="primary" onClick={handleAddBtn} className={'convertBtn'}>
