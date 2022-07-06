@@ -105,7 +105,6 @@ export const App = () => {
             end,
             color
         }
-        console.log(data)
         let ok = validateForm()
 
         if (!ok) {
