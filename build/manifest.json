@@ -1,0 +1,25 @@
+{
+  "short_name": "Calendar App",
+  "name": "Calendar APP for the Siglo 21 University",
+  "icons": [
+    {
+      "src": "calendar-1024.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "calendar-1024.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "calendar-1024.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
