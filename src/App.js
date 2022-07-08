@@ -10,8 +10,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Alert from "react-bootstrap/Alert";
 import moment from "moment";
 
-const API_URL = "http://localhost:8080/api"
-//const API_URL = "https://calendar-api.mfuhr.com.ar/api"
+const API_URL = "https://calendar-api.mfuhr.com.ar/api"
 
 export const App = () => {
     const [modalTitle, setModalTitle] = useState('Agregar Evento')
