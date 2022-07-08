@@ -12,7 +12,7 @@ import moment from "moment";
 
 const API_URL = "https://calendar-api.mfuhr.com.ar/api"
 
-export const App = () => {
+export const App = ({state}) => {
     const [modalTitle, setModalTitle] = useState('Agregar Evento')
     const [eventsInfo, setEventsInfo] = useState({})
     const [id, setId] = useState('')
@@ -36,6 +36,12 @@ export const App = () => {
         })
     }, [])
 
+    useEffect(() => {
+        if (end === '' || new Date(date) > new Date(end)){
+            setEnd(date)
+        }
+    },[date,end])
+
     const handleAddBtn = () => {
         setModalTitle('Agregar Evento')
         setShow(true)
@@ -53,8 +59,8 @@ export const App = () => {
         setModalTitle(event.title)
         setId(event.id)
         setTitle(event.title)
-        setDate(moment(event.startStr).format("yyyy-MM-DD[T]hh:mm"))
-        setEnd(moment(event.endStr).format("yyyy-MM-DD[T]hh:mm"))
+        setDate(moment(event.startStr).locale('es-mx').format("yyyy-MM-DD[T]hh:mm"))
+        setEnd(moment(event.endStr).locale('es-mx').format("yyyy-MM-DD[T]hh:mm"))
         setColor(event.backgroundColor)
         setShowAddBtn('d-none')
         setShowDeleteBtn('')
@@ -89,10 +95,7 @@ export const App = () => {
 
         if ( name === 'id') setId(value)
         if ( name === 'title') setTitle(value)
-        if ( name === 'date') {
-            setDate(value)
-            setEnd(value)
-        }
+        if ( name === 'date') setDate(value)
         if ( name === 'end') setEnd(value)
         if ( name === 'color') setColor(value)
 
@@ -181,6 +184,13 @@ export const App = () => {
                     titleFormat={{month: 'short', year: 'numeric'}}
                     events={eventsInfo}
                     eventClick={handleEventClick}
+                    eventTimeFormat={{
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: false,
+                        omitZeroMinute:false,
+                        meridiem:false
+                    }}
                 />
             </div>
             <Alert variant={'info'}>
