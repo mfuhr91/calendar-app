@@ -8,8 +8,10 @@ import Modal from "react-bootstrap/Modal";
 import FormFloating from "react-bootstrap/FormFloating";
 import InputGroup from "react-bootstrap/InputGroup";
 import Alert from "react-bootstrap/Alert";
+import moment from "moment";
 
-const API_URL = "https://calendar-api.mfuhr.com.ar/api"
+const API_URL = "http://localhost:8080/api"
+//const API_URL = "https://calendar-api.mfuhr.com.ar/api"
 
 export const App = () => {
     const [modalTitle, setModalTitle] = useState('Agregar Evento')
@@ -32,6 +34,7 @@ export const App = () => {
     useEffect(() => {
         getEvents().then((data) => {
             setEventsInfo(data)
+            console.log(data)
         })
     }, [])
 
@@ -52,8 +55,8 @@ export const App = () => {
         setModalTitle(event.title)
         setId(event.id)
         setTitle(event.title)
-        setDate(event.startStr)
-        setEnd(event.endStr)
+        setDate(moment(event.startStr).format("yyyy-MM-DD[T]hh:mm"))
+        setEnd(moment(event.endStr).format("yyyy-MM-DD[T]hh:mm"))
         setColor(event.backgroundColor)
         setShowAddBtn('d-none')
         setShowDeleteBtn('')
@@ -88,7 +91,10 @@ export const App = () => {
 
         if ( name === 'id') setId(value)
         if ( name === 'title') setTitle(value)
-        if ( name === 'date') setDate(value)
+        if ( name === 'date') {
+            setDate(value)
+            setEnd(value)
+        }
         if ( name === 'end') setEnd(value)
         if ( name === 'color') setColor(value)
 
@@ -211,7 +217,7 @@ export const App = () => {
                     <FormFloating className={'mb-3'}>
                         <input  onChange={onInputChange}
                                 value={date}
-                                type="date"
+                                type="datetime-local"
                                 className={'form-control'}
                                 id="dateSince"
                                 name="date"
@@ -223,10 +229,11 @@ export const App = () => {
                     <FormFloating className={'mb-3'}>
                         <input  onChange={onInputChange}
                                 value={end}
-                                type="date"
+                                type="datetime-local"
                                 className={'form-control'}
                                 id="dateTo"
                                 name="end"
+                                min={date}
                                 placeholder="Fecha hasta"
                                 required/>
                         <label className={'ms-3'} htmlFor="name">Fecha hasta</label>
