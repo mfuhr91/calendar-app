@@ -33,7 +33,6 @@ export const App = () => {
     useEffect(() => {
         getEvents().then((data) => {
             setEventsInfo(data)
-            console.log(data)
         })
     }, [])
 
@@ -297,7 +296,6 @@ const saveEvent = async (value) => {
         body: JSON.stringify(value)
     };
 
-    console.log(value)
     if ( !value.id || value.id === '' ) {
         await fetch(API_URL + '/saveEvent', options)
     } else {
